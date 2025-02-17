@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Sai Institute of Education and Entertainment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMhGKD2Vp1XQQ43yxMJBxc4uMlgH0h1FF++SHW" crossorigin="anonymous">
+    <style>
+        body {
+            background: url('https://www.transparenttextures.com/patterns/wood.png'), #4B0082; /* Deep Purple with a wood texture */
+            color:white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-size: cover;
+            margin: 0; /* Remove default margin */
+            height: 100vh; /* Full height of the viewport */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Space between elements */
+        }
+        img {
+            max-width: 100%; /* Responsive */
+            height: auto;
+            margin-bottom: 20px; /* Space below images */
+        }
+        .logo {
+            max-width: 150px; /* Limit logo size */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+        h1 {
+            margin: 0; /* Remove default margin */
+        }
+        .links {
+            margin-top: 20px; /* Space above the links */
+            display: flex;
+            justify-content: center; /* Center the links */
+            margin-bottom: 20px; /* Space below the links */
+        }
+        .links a {
+            color: #FFDD00; /* Yellow for links */
+            text-decoration: none;
+            margin: 0 10px; /* Horizontal margin between links */
+            font-size: 24px; /* Icon size */
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+ 
+    <div class="content">
+        <img id="logo" class="logo" src="" alt="SSIEE Logo" />
+        <h1 id="main-title">Sri Sai Institute of Education and Entertainment</h1>
+        <img id="central-image" src="" alt="Central Image" />
+    </div>
+ 
+    <div class="links">
+        <a id="medium-link" href="#" target="_blank"><i class="fab fa-medium"></i> Medium</a>
+        <a id="linkedin-link" href="#" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a id="facebook-link" href="#" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+    </div>
+ 
+    <script>
+        // Load JSON data
+        fetch('config.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Set logo and central image
+                document.getElementById('logo').src = data.logo;
+                document.getElementById('central-image').src = data.image;
+ 
+                // Set links
+                document.getElementById('medium-link').href = data.links.medium;
+                document.getElementById('linkedin-link').href = data.links.linkedin;
+                document.getElementById('facebook-link').href = data.links.facebook;
+            })
+            .catch(error => {
+                console.error('Error loading JSON:', error);
+                document.getElementById('main-title').innerText = "Error loading data";
+            });
+    </script>
+ 
+</body>
+</html>
